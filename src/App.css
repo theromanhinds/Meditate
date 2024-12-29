@@ -1,5 +1,5 @@
 .App {
-  background-color: rgb(27, 26, 26);
+  background-color: #333;
   text-align: center;
   width: 100%;
   height: 100%;
@@ -15,12 +15,32 @@
   align-items: center;
   height: 100vh;
   font-family: 'Roboto', sans-serif;
+  padding: 0;
+
 }
 
-.content {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+.nav-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(27, 26, 26);
+}
+
+.nav-bar-button {
   color: white;
-  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 0;
+}
+
+/* .content {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px); 
   padding: 20px;
   border: 0.1px solid rgba(140, 140, 140, 0.7);
   border-radius: 15px;
@@ -28,12 +48,11 @@
   text-align: center;
   width: 80%;
   max-width: 600px;
-}
+} */
 
 .scripture-header {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #333;
   color: white;
 
 }
@@ -41,14 +60,12 @@
 .scripture-reference {
   font-size: 28px;
   font-weight: bold;
-  color: #0056b3;
   color: white;
-
   margin-bottom: 20px;
 }
 
 .record-button {
-  background-color: #0056b3;
+  background-color: rgb(27, 26, 26);
   color: white;
   border: none;
   padding: 15px 30px;
@@ -58,15 +75,10 @@
   transition: background-color 0.3s ease;
 }
 
-.record-button:hover {
-  background-color: #003f75;
-}
-
 .transcription {
   margin-top: 20px;
   font-size: 16px;
   color: white;
-
 }
 
 .transcription h3 {

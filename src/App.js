@@ -1,30 +1,37 @@
 import './App.css';
+import React, { useState } from 'react';
 
-import React from 'react';
-import Meditate from './Meditate';
+import { scriptures } from './Components/Scriptures';
+
+import Meditate from './Menus/Meditate';
+import Memorize from './Menus/Memorize';
+import Account from './Menus/Account';
+import NavBar from './Components/NavBar';
+
+import { useAuth } from './Components/AuthProvider';
 
 function App() {
+  const { userData, handleGoogleSignIn, handleSignOut } = useAuth();  // Use the custom hook
 
-    const scriptures = [
-      {
-        reference: "John 3:16",
-        scripture: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
-      },
-      {
-        reference: "Genesis 1:1",
-        scripture: "In the beginning God created the heavens and the earth."
-      },
-      {
-        reference: "John 15:17",
-        scripture: "This is my command: Love each other."
-      }
-    ];
+  const [currentPage, setCurrentPage] = useState('meditate');
 
-    return (
-        <div className="App">
-            <Meditate scriptures={scriptures}/>
-        </div>
-    );
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'memorize':
+        return <Memorize />;
+      case 'account':
+        return <Account userData={userData} handleGoogleSignIn={handleGoogleSignIn} handleSignOut={handleSignOut} />;
+      default:
+        return <Meditate scriptures={scriptures} />;
+    }
+  };
+
+  return (
+    <div className="App">
+      {renderPage()}
+      <NavBar setPage={setCurrentPage} />
+    </div>
+  );
 }
 
 export default App;

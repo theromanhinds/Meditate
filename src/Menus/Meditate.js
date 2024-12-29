@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useAudioRecorder from './useAudioRecorder';  // Import the custom hook
+import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 
 const Meditate = ({ scriptures }) => {
     const [phase, setPhase] = useState(1); // Start with phase 1
