@@ -44,8 +44,8 @@ export const useAuth = () => {
         firstName: firstName,
         createdAt: new Date(),
         stats: {
-          gamesPlayed: 0,
-          highScore: 0,
+          streak: 0,
+          memorized: 0
         }
       }, { merge: true });
     } catch (error) {

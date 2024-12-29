@@ -1,40 +1,139 @@
 .App {
-  background-color: #333;
+  /* background-color: #333; */
+  /* background: linear-gradient(140deg, #181818, #4b4b4b);  */
+  background-color: #18181b;
   text-align: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: 'Helvetica Neue', sans-serif;
+  
 }
 
-.main-container {
+.page-container {
+  height: 100%;
+  width: 100%;
+}
+
+.home-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
-  font-family: 'Roboto', sans-serif;
+  height: 90%;
   padding: 0;
+}
 
+.account-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 88%;
+  padding: 15px;
+}
+
+.account-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  
+}
+
+.account-image {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.account-username {
+  padding-left: 15px;
+}
+
+.stats {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.sign-in-out {
+  background-color: black;
+  border-radius: 12px;
+  padding: 15px;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.not-signed-in-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-bar {
-  position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 8%;
   display: flex;
   justify-content: space-around;
-  background-color: rgb(27, 26, 26);
+  background-color: transparent;
+
 }
 
 .nav-bar-button {
   color: white;
+  width: 100%;
   background: none;
   border: none;
   font-size: 16px;
   padding: 0;
+}
+
+/* .nav-bar-button:hover {
+  background-color: rgb(0, 0, 0);
+} */
+
+/* Icon styling */
+.icon {
+  display: inline-block;
+  font-size: 2rem; /* Size of the icons */
+}
+
+/* Optional: Add color to the icons */
+.nav-bar-button .fa-user {
+  color: #cbae38;
+}
+
+.nav-bar-button .fa-user:hover {
+  color: #ffcc00;
+}
+
+.nav-bar-button .fa-book-open {
+  color: #cbae38;
+}
+
+.nav-bar-button .fa-book-open:hover {
+  color: #ffcc00;
+}
+
+.nav-bar-button .fa-check-circle {
+  color: #cbae38;
+}
+
+.nav-bar-button .fa-check-circle:hover {
+  color: #ffcc00;
 }
 
 /* .content {
@@ -49,6 +148,31 @@
   width: 80%;
   max-width: 600px;
 } */
+
+.circular-button {
+  width: 200px;          /* Width of the button */
+  height: 200px;         /* Height of the button */
+  border-radius: 50%;   /* Makes the button circular */
+  color: white;         /* White text color */
+  font-size: 16px;      /* Font size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;         /* Remove border */
+  cursor: pointer;     /* Change cursor to pointer */
+  transition: background-color 0.3s ease;  /* Smooth transition on hover */
+
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px); 
+  padding: 20px;
+  border: 0.1px solid rgba(140, 140, 140, 0.7);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.circular-button:hover {
+  background-color: rgb(0, 0, 0);
+}
 
 .scripture-header {
   font-size: 24px;
@@ -84,4 +208,63 @@
 .transcription h3 {
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+.glowing-sphere {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;  /* Makes it a circle */
+  background: radial-gradient(circle, #f3c100, #f1a800); /* Soft golden yellow color */
+  box-shadow: 0 0 20px rgba(243, 193, 0, 0.6), 0 0 40px rgba(241, 168, 0, 0.6); /* Golden glow */
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  animation: glow 2s infinite alternate, pulse 2s infinite ease-in-out; /* Slower pulse */
+  transition: transform 0.3s ease;
+}
+
+.glowing-sphere:hover {
+  transform: scale(1.1); /* Enlarge when hovered */
+}
+
+/* Glowing animation */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(243, 193, 0, 0.6), 0 0 40px rgba(241, 168, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(243, 193, 0, 1), 0 0 60px rgba(241, 168, 0, 1);
+  }
+}
+
+/* Pulse effect to make the sphere appear to "breathe" (slower pulse) */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.screen-transition {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.transition-active {
+  opacity: 1;
+  pointer-events: all;
 }

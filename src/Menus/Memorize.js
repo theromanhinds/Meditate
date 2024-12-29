@@ -2,8 +2,9 @@ import React from 'react'
 
 function Memorize() {
   return (
-    <div className="main-container">
+    <div className="home-container">
       Memorize
+      
     </div>
   )
 }
