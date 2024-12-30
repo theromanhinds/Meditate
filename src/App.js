@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { scriptures } from './Components/Scriptures';
 
-import DailyMeno from './Pages/DailyMeno';
+import Home from './Pages/Home';
 import Remeno from './Pages/Remeno';
 import Account from './Pages/Account';
 import NavBar from './Components/NavBar';
@@ -13,7 +13,7 @@ import { useAuth } from './Components/AuthProvider';
 function App() {
   const { userData, handleGoogleSignIn, handleSignOut } = useAuth();  // Use the custom hook
 
-  const [currentPage, setCurrentPage] = useState('daily-meno');
+  const [currentPage, setCurrentPage] = useState('home');
   // const [transitioning, setTransitioning] = useState(false);  // Track transition state
 
   const renderPage = () => {
@@ -23,7 +23,7 @@ function App() {
       case 'account':
         return <Account setPage={(page) => handlePageChange(page)} userData={userData} handleGoogleSignIn={handleGoogleSignIn} handleSignOut={handleSignOut} />;
       default:
-        return <DailyMeno setPage={(page) => handlePageChange(page)} scriptures={scriptures} userData={userData}/>;
+        return <Home setPage={(page) => handlePageChange(page)} scriptures={scriptures} userData={userData}/>;
     }
   };
 

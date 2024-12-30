@@ -1,131 +1,140 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../Components/NavBar';
-
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 
-const DailyMeno = ({ scriptures, setPage, userData }) => {
+function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
+    
+    const [phase, setPhase] = useState(1);
 
-  const [menoActivated, setMenoActivated] = useState(false);
-  const [menoCompleted, setMenoCompleted] = useState(false);
+    const { isRecording, transcription, startRecording, stopRecording } = useAudioRecorder();
 
-  const [phase, setPhase] = useState(1);
-  
-  const [scripture, setScripture] = useState(null);
+    const handleStartRecording = () => {
+        setPhase(2); 
+        startRecording();
+    };
 
-  // const { isRecording, transcription, startRecording, stopRecording } = useAudioRecorder();
-  // const handleStartRecording = () => {
-  //   setPhase(3); // Move to phase 3 (Recording)
-  //   startRecording();
-  // };
+    const handleStopRecording = async () => {
+        await stopRecording(); 
+        setPhase(3);
+    };
 
-  // const handleStopRecording = async () => {
-  //   await stopRecording(); // Stop recording
-  //   setPhase(4); // Move to phase 4 (Show transcription)
-  // };
+    const handleRestartRecording = async () => {
+        setPhase(2);
+        startRecording();
+    };
 
-  // const handleReset = () => {
-  //   setPhase(1); // Go back to phase 1
-  //   getRandomScripture();
-  // };
+    const handleContinue = async () => {
+        setPhase((prevPhase) => prevPhase + 1);
+    };
 
-  // // Get a random scripture when entering phase 2
-  // const getRandomScripture = () => {
-  //   const randomIndex = Math.floor(Math.random() * scriptures.length);
-  //   setScripture(scriptures[randomIndex]);
-  // };
+    const handleReset = () => {
+        setMenoCompleted(true);
+        setMenoActivated(false);        
+    };
 
-  // const handleSphereClick = () => {
-  //   setPhase(2);  // Move to phase 2 after clicking the sphere
-  //   getRandomScripture();
-  // };
+    // Get a random scripture when entering phase 2
+    // const getRandomScripture = () => {
+    // const randomIndex = Math.floor(Math.random() * scriptures.length);
+    // setScripture(scriptures[randomIndex]);
+    // };
 
-  // // Load random scripture when component mounts or phase changes
-  // useEffect(() => {
-  //   if (phase === 2) {
-  //     getRandomScripture();
-  //   }
-  // }, [phase]);
+    return (
+        <>
 
-  return (
-    <div className="page-container">
+        {phase === 1 && (
+            <div className='meno-container'>
 
-      {menoCompleted && !menoActivated && (
-        <div className="page-content">
+                <div className='scripture-reference'>{scriptures[0].reference}</div>
 
-          <div className='page-header'>
-            <h2 className='page-header-text'>Daily Meno</h2>
-            <h2 className='page-header-streak'>🌿{userData ? userData.stats.streak : 0}</h2>
-          </div>
+                <div className='meno-action-button-container'>
 
-          <div className='page-content-inner'>
-            <h2 className='completed-scripture'>{scriptures[0].reference}</h2>
-            <p className='completed-scripture'>{scriptures[0].scripture}</p>
-          </div>
+                    <button className='meno-action-button' onClick={handleStartRecording}>
+                        <span className="icon"><i class="fas fa-microphone"></i></span>
+                    </button>
 
-        </div>
-      )}
+                </div>
 
-      
-      {!menoCompleted && !menoActivated && (
-        <div className="page-content">
-        
-          <div className='page-header'>
-            <h2 className='page-header-text'>Daily Meno</h2>
-            <h2 className='page-header-streak'>🌿{userData ? userData.stats.streak : 0}</h2>
-          </div>
-
-          <div className='page-content-inner'>
-            <button className='daily-meno-button'>
-              Tap to Begin
-            </button>
-          </div>
-        </div>
-      )}
-      
-      {menoActivated && (
-        <></>
-      )}
-        
-        {/* {phase === 1 && ( // Phase 1: Main Menu
-          <div className="main-menu">
-            <button className="glowing-sphere" onClick={handleSphereClick}>Tap to Begin</button>
-          </div>
+            </div>
         )}
 
-        {phase === 2 && ( // Phase 2: Show random scripture and start recording
-          <div className=''>
-            <h2 className="scripture-reference">{scripture?.reference}</h2>
+        {phase === 2 && (
+            <div className='meno-container'>
 
-            <button className="record-button" onClick={handleStartRecording}>
-              Start Recording
-            </button>
-          </div>
+            <div className='scripture-reference'>Recording...</div>
+
+                <div className='meno-action-button-container'>
+
+                    <button className='meno-action-button' onClick={handleStopRecording}>
+                        <span className="icon"><i class="fas fa-stop"></i></span>
+                    </button>
+
+                </div>
+            
+            </div>
         )}
 
-        {phase === 3 && ( // Phase 3: Recording in progress
-          <div className="waveform-container">
-            <h3>Recording...</h3>
-            <button className="record-button" onClick={handleStopRecording}>
-              Stop Recording
-            </button>
-          </div>
+        {phase === 3 && (
+            <div className='meno-container'>
+
+                <h3 className='scripture-transcription'>{transcription}</h3>
+                
+                <div className='meno-action-button-container'>
+
+                    <button className='meno-action-button' onClick={handleRestartRecording}>
+                        <span className="icon"><i class="fas fa-rotate-left"></i></span>
+                    </button>
+
+                    <button className='meno-action-button' onClick={handleContinue}>
+                        <span className="icon"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+
+                </div>
+
+            </div>
         )}
 
-        {phase === 4 && ( // Phase 4: Show transcription and scripture
-          <>
-            <h3>Transcription:</h3>
-            <p>{transcription}</p>
-            <h4>{scripture?.reference}</h4>
-            <p>{scripture?.scripture}</p>
-            <button className="record-button" onClick={handleReset}>
-              Reset
-            </button>
-          </>
-        )} */}
-      
-      <NavBar setPage={setPage} />
-    </div>
-  );
-};
+        {phase === 4 && (
+            <div className='meno-container'>
 
-export default DailyMeno;
+                <p className='accuracy-score'>Accuracy: 50%</p>
+
+                <h3 className='scripture-transcription'>{transcription} </h3>
+                
+                <div className='meno-action-button-container'>
+
+                    <button className='meno-action-button' onClick={handleRestartRecording}>
+                        <span className="icon"><i class="fas fa-rotate-left"></i></span>
+                    </button>
+
+                    <button className='meno-action-button' onClick={handleContinue}>
+                        <span className="icon"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+
+                </div>
+                
+            </div>
+        )}
+
+        {phase === 5 && (
+            <div className='meno-container'>
+
+                <p className='accuracy-score'>{scriptures[0].reference}</p>
+
+                <h3 className='scripture-transcription'>{scriptures[0].scripture}</h3>
+                
+                <div className='meno-action-button-container'>
+
+                    <button className='meno-action-button' onClick={handleReset}>
+                        <span className="icon"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+
+                </div>
+                
+            </div>
+        )}
+
+       
+        </>
+    )
+}
+
+export default DailyMeno

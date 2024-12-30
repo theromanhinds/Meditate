@@ -76,7 +76,7 @@
 
 .add-scripture-button {
   background-color: transparent;
-  outline: none;
+  outline: black;
   border: none;
   width: 100%;
   padding-top: 8px;
@@ -91,12 +91,19 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  transition: 0.3s;
+}
+
+.add-scripture-button:hover {
+  outline: 2px solid black;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2);
+  font-size: 32px;
 }
 
 .scripture-button {
   background-color: transparent;
   width: 100%;
-  outline: none;
+  outline: black;
   border: none;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -111,6 +118,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  transition: 0.3s;
+}
+
+.scripture-button:hover {
+  outline: 2px solid black;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2);
+  font-size: 32px;
 }
 
 .nav-bar {
@@ -119,14 +133,12 @@
   height: 8%;
   display: flex;
   justify-content: space-around;
-  background-color: transparent;
 }
 
 .nav-bar-button {
   color: white;
   width: 100%;
-  background: none;
-  background-color: rgb(44, 44, 44);
+  background-color: #101012;
   border: none;
   font-size: 16px;
   padding: 0;
@@ -216,37 +228,17 @@
 
 /* Optional: Add color to the icons */
 .nav-bar-button .fa-user {
-  color: #cbae38;
-  color: white;
-}
-
-.nav-bar-button .fa-user:hover {
-  color: #ffcc00;
   color: white;
 }
 
 .nav-bar-button .fa-bookmark {
-  color: #cbae38;
   color: white;
-
-}
-
-.nav-bar-button .fa-bookmark:hover {
-  color: #ffcc00;
-  color: white;
-
 }
 
 .nav-bar-button .fa-check-circle {
-  color: #cbae38;
   color: white;
 }
 
-.nav-bar-button .fa-check-circle:hover {
-  color: #ffcc00;
-  color: white;
-
-}
 
 /* .content {
   background: rgba(255, 255, 255, 0.1);
@@ -377,4 +369,93 @@
 .transition-active {
   opacity: 1;
   pointer-events: all;
+}
+
+.meno-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.meno-action-button-container {
+  position: absolute;
+  width: 80%;
+  height: 10%;
+  bottom: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.meno-action-button {
+  background-color: transparent;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.meno-action-button .fa-microphone {
+  color: white;
+  transition: 0.3s;
+}
+
+.meno-action-button:hover {
+  background-color: white;
+  color: #18181b;
+
+  .fa-microphone {
+    color: black;
+    font-size: 2rem;
+  }
+
+  .fa-stop {
+    color: black;
+    font-size: 2rem;
+  }
+
+  .fa-arrow-right {
+    color: black;
+    font-size: 2rem;
+  }
+  
+  .fa-rotate-left {
+    color: black;
+    font-size: 2rem;
+  }
+
+}
+
+.fa-ellipsis-vertical {
+  font-size: 1rem;
+}
+
+.fa-stop {
+  color: white;
+  transition: 0.3s;
+}
+
+.fa-arrow-right {
+  color: white;
+  transition: 0.3s;
+}
+
+.fa-rotate-left {
+  color: white;
+  transition: 0.3s;
+}
+
+.scripture-transcription {
+  color: white;
+  font-size: 24px;
+  padding: 30px;
+}
+
+.accuracy-score {
+  position: absolute;
+  top: 40px;
+  color: white;
 }

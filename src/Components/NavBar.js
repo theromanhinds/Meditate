@@ -6,7 +6,7 @@ function NavBar({ setPage }) {
         <button onClick={() => setPage('remeno')} className='nav-bar-button'>
             <span className="icon"><i class="far fa-bookmark"></i></span>
         </button>
-        <button onClick={() => setPage('daily-meno')} className='nav-bar-button'>
+        <button onClick={() => setPage('home')} className='nav-bar-button'>
             <span className="icon"><i class="far fa-check-circle"></i></span>
         </button>
         <button onClick={() => setPage('account')} className='nav-bar-button'>
