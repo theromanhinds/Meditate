@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import NavBar from '../Components/NavBar';
+
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 
-const Meditate = ({ scriptures, phase, setPhase }) => {
+const DailyMeno = ({ scriptures, setPage, userData }) => {
+
+  const [phase, setPhase] = useState(1);  // Track the current phase
+
   const [scripture, setScripture] = useState(null);
   const { isRecording, transcription, startRecording, stopRecording } = useAudioRecorder();
 
@@ -39,11 +44,23 @@ const Meditate = ({ scriptures, phase, setPhase }) => {
   }, [phase]);
 
   return (
-    <div className="home-container">
-      <div className="content">
-        {phase === 1 && ( // Phase 1: Main Menu
+    <div className="page-container">
+      <div className="page-content">
+        
+        <div className='page-header'>
+          <h2 className='page-header-text'>Daily Meno</h2>
+          <h2 className='page-header-streak'>🌿{userData ? userData.stats.streak : 0}</h2>
+        </div>
+
+        <div className='page-content-inner'>
+          <button className='daily-meno-button'>
+            Tap to Begin
+          </button>
+        </div>
+        
+        {/* {phase === 1 && ( // Phase 1: Main Menu
           <div className="main-menu">
-            <button className="glowing-sphere" onClick={handleSphereClick}></button>
+            <button className="glowing-sphere" onClick={handleSphereClick}>Tap to Begin</button>
           </div>
         )}
 
@@ -76,10 +93,11 @@ const Meditate = ({ scriptures, phase, setPhase }) => {
               Reset
             </button>
           </>
-        )}
+        )} */}
       </div>
+      <NavBar setPage={setPage} />
     </div>
   );
 };
 
-export default Meditate;
+export default DailyMeno;

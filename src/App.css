@@ -1,6 +1,4 @@
 .App {
-  /* background-color: #333; */
-  /* background: linear-gradient(140deg, #181818, #4b4b4b);  */
   background-color: #18181b;
   text-align: center;
   width: 100vw;
@@ -9,13 +7,118 @@
   padding: 0;
   overflow: hidden;
   font-family: 'Helvetica Neue', sans-serif;
-  
 }
 
 .page-container {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
+.page-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: white;
+}
+
+.page-content {
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.page-content-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.daily-meno-button {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  outline: none;
+  color: white;
+  font-size: 20px;
+}
+
+.scripture-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 28px;
+  color: white;
+}
+
+.add-scripture-button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: 28px;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.scripture-button {
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0;
+  font-size: 28px;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nav-bar {
+  bottom: 0;
+  width: 100%;
+  height: 8%;
+  display: flex;
+  justify-content: space-around;
+  background-color: transparent;
+}
+
+.nav-bar-button {
+  color: white;
+  width: 100%;
+  background: none;
+  background-color: rgb(44, 44, 44);
+  border: none;
+  font-size: 16px;
+  padding: 0;
+}
+
+/* ------------------------- */
 
 .home-container {
   display: flex;
@@ -82,24 +185,6 @@
   align-items: center;
 }
 
-.nav-bar {
-  bottom: 0;
-  width: 100%;
-  height: 8%;
-  display: flex;
-  justify-content: space-around;
-  background-color: transparent;
-
-}
-
-.nav-bar-button {
-  color: white;
-  width: 100%;
-  background: none;
-  border: none;
-  font-size: 16px;
-  padding: 0;
-}
 
 /* .nav-bar-button:hover {
   background-color: rgb(0, 0, 0);
@@ -108,32 +193,41 @@
 /* Icon styling */
 .icon {
   display: inline-block;
-  font-size: 2rem; /* Size of the icons */
+  font-size: 1.5rem; /* Size of the icons */
 }
 
 /* Optional: Add color to the icons */
 .nav-bar-button .fa-user {
   color: #cbae38;
+  color: white;
 }
 
 .nav-bar-button .fa-user:hover {
   color: #ffcc00;
+  color: white;
 }
 
-.nav-bar-button .fa-book-open {
+.nav-bar-button .fa-bookmark {
   color: #cbae38;
+  color: white;
+
 }
 
-.nav-bar-button .fa-book-open:hover {
+.nav-bar-button .fa-bookmark:hover {
   color: #ffcc00;
+  color: white;
+
 }
 
 .nav-bar-button .fa-check-circle {
   color: #cbae38;
+  color: white;
 }
 
 .nav-bar-button .fa-check-circle:hover {
   color: #ffcc00;
+  color: white;
+
 }
 
 /* .content {
@@ -210,25 +304,24 @@
   margin-bottom: 10px;
 }
 
-.glowing-sphere {
+/* .glowing-sphere {
   width: 100px;
   height: 100px;
-  border-radius: 50%;  /* Makes it a circle */
-  background: radial-gradient(circle, #f3c100, #f1a800); /* Soft golden yellow color */
-  box-shadow: 0 0 20px rgba(243, 193, 0, 0.6), 0 0 40px rgba(241, 168, 0, 0.6); /* Golden glow */
+  border-radius: 50%; 
+  background: radial-gradient(circle, #f3c100, #f1a800);
+  box-shadow: 0 0 20px rgba(243, 193, 0, 0.6), 0 0 40px rgba(241, 168, 0, 0.6);
   border: none;
   cursor: pointer;
   outline: none;
   position: relative;
-  animation: glow 2s infinite alternate, pulse 2s infinite ease-in-out; /* Slower pulse */
+  animation: glow 2s infinite alternate, pulse 2s infinite ease-in-out; 
   transition: transform 0.3s ease;
 }
 
 .glowing-sphere:hover {
-  transform: scale(1.1); /* Enlarge when hovered */
+  transform: scale(1.1);
 }
 
-/* Glowing animation */
 @keyframes glow {
   0% {
     box-shadow: 0 0 20px rgba(243, 193, 0, 0.6), 0 0 40px rgba(241, 168, 0, 0.6);
@@ -238,7 +331,6 @@
   }
 }
 
-/* Pulse effect to make the sphere appear to "breathe" (slower pulse) */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -249,7 +341,7 @@
   100% {
     transform: scale(1);
   }
-}
+} */
 
 .screen-transition {
   position: absolute;
