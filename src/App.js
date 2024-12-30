@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 
 import { scriptures } from './Components/Scriptures';
 
-import DailyMeno from './Menus/DailyMeno';
-import Remeno from './Menus/Remeno';
-import Account from './Menus/Account';
+import DailyMeno from './Pages/DailyMeno';
+import Remeno from './Pages/Remeno';
+import Account from './Pages/Account';
 import NavBar from './Components/NavBar';
 
 import { useAuth } from './Components/AuthProvider';
