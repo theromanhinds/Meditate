@@ -39,10 +39,21 @@ export const useAuth = () => {
 
       // Create user document in Firestore
       await setDoc(doc(db, 'users', user.uid), {
-        email: user.email,
-        fullName: user.displayName,
-        firstName: firstName,
         createdAt: new Date(),
+        email: user.email,
+        firstName: firstName,
+        fullName: user.displayName,
+        dailyMenoCompleted: false,
+        scriptures: [
+          {
+          reference: "Genesis 1:1",
+          verse: "In the beginning, God created the heavens and the earth."
+          },
+          {
+            reference: "John 3:16",
+            verse: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+          }
+      ],
         stats: {
           streak: 0,
           memorized: 0

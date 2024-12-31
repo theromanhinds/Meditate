@@ -142,6 +142,9 @@
   border: none;
   font-size: 16px;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ------------------------- */
@@ -264,12 +267,21 @@
 
 /* Icon styling */
 .icon {
-  display: inline-block;
-  font-size: 1.5rem; /* Size of the icons */
+  display: flex;
+  width: 25px;
+  height: 25px;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-icon {
+  display: flex;
+  width: 25px;
+  height: 25px;
   font-size: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Optional: Add color to the icons */

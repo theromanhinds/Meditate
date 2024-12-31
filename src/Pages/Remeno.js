@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import NavBar from '../Components/NavBar'
+import RemenoScriptureButton from '../Components/RemenoScriptureButton'
+
+import { addScriptureToUser, deleteScriptureFromUser } from '../Components/Firebase'
 
 function Remeno({ setPage, userData }) {
+
+  const [scriptures, setScriptures] = useState(userData?.scriptures || []);
+
+  useEffect(() => {
+    setScriptures(userData?.scriptures || []);
+  }, [userData]);
+
+  const addScripture = async () => {
+    const newScripture = { reference: "Genesis 1:1", verse: "For God so loved the world..." };
+    await addScriptureToUser(newScripture);
+    setScriptures((prev) => [...prev, newScripture]);
+  };
+
+  const deleteScripture = async (scripture) => {
+    await deleteScriptureFromUser(scripture);
+    setScriptures((prev) => prev.filter(s => s.reference !== scripture.reference));
+  };
+
   return (
     <div className="page-container">
       <div className='page-content'>
@@ -13,105 +34,19 @@ function Remeno({ setPage, userData }) {
 
         <div className='page-content-inner'>
           <div className='scripture-list'>
+
             <button className='add-scripture-button'>
               Add to your list!
-              <span className="add-icon"><i className="fas fa-plus"></i></span>
+              <span onClick={addScripture} className="add-icon"><i className="fas fa-plus"></i></span>
             </button>
 
-            <button className='scripture-button'>
-              Gen 1:1
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 1:2
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 1:3
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 1:4
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-            
-            <button className='scripture-button'>
-              Gen 1:5
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 2:1
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 2:2
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 2:3
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 2:4
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 2:5
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-            
-            <button className='scripture-button'>
-              Gen 3:1
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 3:2
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 3:3
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 3:4
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-            
-            <button className='scripture-button'>
-              Gen 3:5
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 4:1
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 4:2
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 4:3
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
-
-            <button className='scripture-button'>
-              Gen 4:4
-              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
-            </button>
+            {scriptures.length > 0 ? (
+              scriptures.map(scripture => (
+                <RemenoScriptureButton key={scripture.reference} reference={scripture.reference} deleteScripture={() => deleteScripture(scripture)}/>
+              ))
+            ) : (
+              <>No scriptures memorzied.</>
+            )}
 
           </div>
         </div>

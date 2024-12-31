@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,3 +16,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+export const addScriptureToUser = async (scripture) => {
+  const userId = auth.currentUser?.uid;
+  if (!userId) throw new Error("User not authenticated");
+
+  const userRef = doc(db, "users", userId);
+  await updateDoc(userRef, {
+    scriptures: arrayUnion(scripture)
+  });
+};
+
+export const deleteScriptureFromUser = async (scripture) => {
+  const userId = auth.currentUser?.uid;
+  if (!userId) throw new Error("User not authenticated");
+
+  const userRef = doc(db, "users", userId);
+  await updateDoc(userRef, {
+    scriptures: arrayRemove(scripture)
+  });
+};
