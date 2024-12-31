@@ -71,7 +71,7 @@ function Remeno({ setPage, scriptures, setScriptures }) {
                   <RemenoScriptureButton key={scripture.reference} reference={scripture.reference} deleteScripture={() => deleteScripture(scripture)}/>
                 ))
               ) : (
-                <>No scriptures memorzied.</>
+                <div className='add-scripture-button'>No scriptures memorzied.</div>
               )}
 
           </div>
