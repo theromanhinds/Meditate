@@ -11,7 +11,7 @@ function Remeno({ setPage, scriptures, setScriptures }) {
 
   useEffect(() => {
     setScriptures(scriptures || []);
-  }, [scriptures]);
+  }, [scriptures, setScriptures]);
 
   const requestScripture = async (selectedBook, selectedChapter, selectedStartVerse, selectedEndVerse) => {
     try {

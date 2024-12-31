@@ -38,7 +38,7 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
           requestScripture(selectedBook, selectedChapter, selectedStartVerse, selectedEndVerse);
           setSelectingScripture(false); // or any other finalization action
         }
-      }, [selectStage, selectedEndVerse]);
+      }, [selectStage, selectedEndVerse, selectedChapter, selectedStartVerse, requestScripture, setSelectingScripture]);
 
   return (
         <>
