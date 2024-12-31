@@ -92,7 +92,10 @@ function Remeno({ setPage, scriptures, setScriptures }) {
                   <RemenoScriptureButton key={scripture.reference} 
                                         reference={scripture.reference} 
                                         viewVerse={() => viewVerse(scripture)}
-                                        deleteScripture={() => deleteScripture(scripture)}/>
+                                        deleteScripture={(e) => {
+                                          e.stopPropagation();
+                                          deleteScripture(scripture);
+                                        }}/>
                 ))
               ) : (
                 <div className='add-scripture-button'>No scriptures memorzied.</div>
