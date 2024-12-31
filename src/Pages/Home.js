@@ -20,12 +20,15 @@ const Home = ({ scriptures, dailyMenoScripture,
   };
   
   const startDailyMeno = () => {
-    const randomIndex = Math.floor(Math.random() * scriptures.length);
-    setDailyMenoScripture(scriptures[randomIndex]);
 
-    setTimeout(() => {
-        setMenoActivated(true);
-    }, 0); 
+    console.log("start meno");
+    
+    // const randomIndex = Math.floor(Math.random() * scriptures.length);
+    // setDailyMenoScripture(scriptures[randomIndex]);
+
+    // setTimeout(() => {
+    //     setMenoActivated(true);
+    // }, 0); 
   };
 
   return (

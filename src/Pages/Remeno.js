@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import NavBar from '../Components/NavBar'
 import RemenoScriptureButton from '../Components/RemenoScriptureButton'
 import ScriptureSelect from './ScriptureSelect';
 
 import { addScriptureToUser, deleteScriptureFromUser } from '../Components/Firebase'
+import VerseViewer from './VerseViewer';
 
 function Remeno({ setPage, scriptures, setScriptures }) {
 
-  const [selectingScripture, setSelectingScripture] = useState(false)
+  const [selectingScripture, setSelectingScripture] = useState(false);
+  const [scriptureToView, setScriptureToView] = useState(null);
+  const [viewingVerse, setViewingVerse] = useState(false);
 
   useEffect(() => {
     setScriptures(scriptures || []);
@@ -43,11 +46,27 @@ function Remeno({ setPage, scriptures, setScriptures }) {
     setScriptures((prev) => prev.filter(s => s.reference !== scripture.reference));
   };
 
+  const viewVerse = (scripture) => {
+    setScriptureToView(scripture);
+    setViewingVerse(true);
+  }
+
+  const closeViewingVerse = () => {
+    setViewingVerse(false);
+    setScriptureToView(null);
+  }
+
   return (
     <>
       {selectingScripture && (
         <ScriptureSelect setSelectingScripture={setSelectingScripture}
                           requestScripture={requestScripture}/>
+      )}
+
+      {viewingVerse && (
+        <div className='verse-viewer-overlay' onClick={closeViewingVerse}>
+          <VerseViewer scripture={scriptureToView}/>
+        </div>
       )}
 
       {<div className="page-container">
@@ -70,7 +89,10 @@ function Remeno({ setPage, scriptures, setScriptures }) {
 
               {scriptures.length > 0 ? (
                 [...scriptures].reverse().map(scripture => (
-                  <RemenoScriptureButton key={scripture.reference} reference={scripture.reference} deleteScripture={() => deleteScripture(scripture)}/>
+                  <RemenoScriptureButton key={scripture.reference} 
+                                        reference={scripture.reference} 
+                                        viewVerse={() => viewVerse(scripture)}
+                                        deleteScripture={() => deleteScripture(scripture)}/>
                 ))
               ) : (
                 <div className='add-scripture-button'>No scriptures memorzied.</div>
