@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
+import { evaluateTranscription } from '../Functions/evaluateTranscription';
 
 function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
     
     const [phase, setPhase] = useState(1);
+    const [correctedString, setCorrectedString] = useState('');
+    const [accuracy, setAccuracy] = useState('');
 
     const { isRecording, transcription, startRecording, stopRecording } = useAudioRecorder();
 
@@ -22,8 +25,15 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
         startRecording();
     };
 
-    const handleContinue = async () => {
-        setPhase((prevPhase) => prevPhase + 1);
+    const handleEvaluateTranscription = () => {
+        const result = evaluateTranscription(transcription, scriptures[0].scripture);
+        setCorrectedString(result.correctedString);
+        setAccuracy(result.accuracy);
+        setPhase(4);
+    }
+
+    const handleContinue = () => {
+        setPhase(5);
     };
 
     const handleReset = () => {
@@ -48,7 +58,7 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
                 <div className='meno-action-button-container'>
 
                     <button className='meno-action-button' onClick={handleStartRecording}>
-                        <span className="icon"><i class="fas fa-microphone"></i></span>
+                        <span className="icon"><i className="fas fa-microphone"></i></span>
                     </button>
 
                 </div>
@@ -64,7 +74,7 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
                 <div className='meno-action-button-container'>
 
                     <button className='meno-action-button' onClick={handleStopRecording}>
-                        <span className="icon"><i class="fas fa-stop"></i></span>
+                        <span className="icon"><i className="fas fa-stop"></i></span>
                     </button>
 
                 </div>
@@ -80,11 +90,11 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
                 <div className='meno-action-button-container'>
 
                     <button className='meno-action-button' onClick={handleRestartRecording}>
-                        <span className="icon"><i class="fas fa-rotate-left"></i></span>
+                        <span className="icon"><i className="fas fa-rotate-left"></i></span>
                     </button>
 
-                    <button className='meno-action-button' onClick={handleContinue}>
-                        <span className="icon"><i class="fas fa-arrow-right"></i></span>
+                    <button className='meno-action-button' onClick={handleEvaluateTranscription}>
+                        <span className="icon"><i className="fas fa-arrow-right"></i></span>
                     </button>
 
                 </div>
@@ -95,18 +105,18 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
         {phase === 4 && (
             <div className='meno-container'>
 
-                <p className='accuracy-score'>Accuracy: 50%</p>
+                <p className='accuracy-score'>{accuracy}</p>
 
-                <h3 className='scripture-transcription'>{transcription} </h3>
+                <h3 className='scripture-transcription'>{correctedString} </h3>
                 
                 <div className='meno-action-button-container'>
 
                     <button className='meno-action-button' onClick={handleRestartRecording}>
-                        <span className="icon"><i class="fas fa-rotate-left"></i></span>
+                        <span className="icon"><i className="fas fa-rotate-left"></i></span>
                     </button>
 
                     <button className='meno-action-button' onClick={handleContinue}>
-                        <span className="icon"><i class="fas fa-arrow-right"></i></span>
+                        <span className="icon"><i className="fas fa-arrow-right"></i></span>
                     </button>
 
                 </div>
@@ -124,7 +134,7 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
                 <div className='meno-action-button-container'>
 
                     <button className='meno-action-button' onClick={handleReset}>
-                        <span className="icon"><i class="fas fa-arrow-right"></i></span>
+                        <span className="icon"><i className="fas fa-arrow-right"></i></span>
                     </button>
 
                 </div>

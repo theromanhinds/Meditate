@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavBar from '../Components/NavBar';
 
 import DailyMeno from './DailyMeno';
+import { evaluateTranscription } from '../Functions/evaluateTranscription';
 
 const Home = ({ scriptures, setPage, userData }) => {
 
@@ -12,8 +13,13 @@ const Home = ({ scriptures, setPage, userData }) => {
   
   const [scripture, setScripture] = useState(null);
 
+  const transcription = 'God created in beginning and heavens and earth and all of the world';
+
   const startDailyMeno = () => {
     setMenoActivated(true);
+
+    // evaluateTranscription(transcription, scriptures[0].scripture);
+
   }
 
   return (

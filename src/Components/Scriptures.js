@@ -5,7 +5,7 @@ export const scriptures = [
     // },
     {
       reference: "Genesis 1:1",
-      scripture: "In the beginning God created the heavens and the earth."
+      scripture: "In the beginning, God created the heavens and the earth."
     },
     // {
     //   reference: "John 15:17",

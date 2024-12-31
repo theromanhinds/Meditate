@@ -15,102 +15,102 @@ function Remeno({ setPage, userData }) {
           <div className='scripture-list'>
             <button className='add-scripture-button'>
               Add to your list!
-              <span className="add-icon"><i class="fas fa-plus"></i></span>
+              <span className="add-icon"><i className="fas fa-plus"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 1:1
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 1:2
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 1:3
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 1:4
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
             
             <button className='scripture-button'>
               Gen 1:5
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 2:1
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 2:2
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 2:3
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 2:4
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 2:5
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
             
             <button className='scripture-button'>
               Gen 3:1
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 3:2
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 3:3
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 3:4
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
             
             <button className='scripture-button'>
               Gen 3:5
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 4:1
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 4:2
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 4:3
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
             <button className='scripture-button'>
               Gen 4:4
-              <span className="icon"><i class="fas fa-ellipsis-vertical"></i></span>
+              <span className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
             </button>
 
           </div>
