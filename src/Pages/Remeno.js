@@ -63,9 +63,9 @@ function Remeno({ setPage, scriptures, setScriptures }) {
         <div className='page-content-inner'>
           <div className='scripture-list'>
 
-              <button className='add-scripture-button'>
+              <button className='add-scripture-button' onClick={startSelectingScripture} >
                 Add Scripture
-                <span onClick={startSelectingScripture} className="add-icon"><i className="fas fa-plus"></i></span>
+                <span className="add-icon"><i className="fas fa-plus"></i></span>
               </button>
 
               {scriptures.length > 0 ? (

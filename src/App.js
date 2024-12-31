@@ -34,7 +34,12 @@ function App() {
       case 'remeno':
         return <Remeno setPage={(page) => handlePageChange(page)} scriptures={scriptures} setScriptures={setScriptures}/>;
       case 'account':
-        return <Account setPage={(page) => handlePageChange(page)} userData={userData} handleGoogleSignIn={handleGoogleSignIn} handleSignOut={handleSignOut} />;
+        return <Account setPage={(page) => handlePageChange(page)} 
+                        currentStreak={currentStreak}
+                        scriptures={scriptures}
+                        userData={userData} 
+                        handleGoogleSignIn={handleGoogleSignIn} 
+                        handleSignOut={handleSignOut} />;
       default:
         return <Home setPage={(page) => handlePageChange(page)} 
                       scriptures={scriptures} 

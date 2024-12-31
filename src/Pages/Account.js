@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../Components/NavBar'
 
-function Account({ setPage, userData, handleSignOut }) {
+function Account({ setPage, userData, handleSignOut, currentStreak, scriptures }) {
   return (
     <div className="page-container">
       
@@ -19,12 +19,12 @@ function Account({ setPage, userData, handleSignOut }) {
             <div className='stats-container'>
               <div className='stats-container-inner'>
                 <p className='stats-text'>Streak</p>
-                <h1 className='stats-number'>{userData?.stats.streak}</h1>
+                <h1 className='stats-number'>{currentStreak}</h1>
               </div>
 
               <div className='stats-container-inner'>
                 <p className='stats-text'>Scriptures</p>
-                <h1 className='stats-number'>{userData?.scriptures.length}</h1>
+                <h1 className='stats-number'>{scriptures.length}</h1>
               </div>
 
             </div>

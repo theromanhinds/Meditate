@@ -10,6 +10,7 @@ const Home = ({ scriptures, dailyMenoScripture,
                 setMenoCompleted, setDailyMenoScripture, 
                 setPage, currentStreak, setCurrentStreak }) => {
 
+
   const handleStreakIncrement = () => {
     setCurrentStreak((prevStreak) => {
       const updatedStreak = prevStreak + 1;
@@ -54,13 +55,15 @@ const Home = ({ scriptures, dailyMenoScripture,
         
           <div className='page-header'>
             <h2 className='page-header-text'>Daily Challenge</h2>
-            <StreakWidget/>
+            <StreakWidget currentStreak={currentStreak}/>
           </div>
 
           <div className='page-content-inner'>
             <button className='daily-meno-button' onClick={startDailyMeno}>
-              Tap to Begin
+              <span className="play-icon"><i className="fab fa-pagelines"></i></span>
             </button>
+
+            <p className='tap-to-start'>Tap to start!</p>
           </div>
         </div>
       )}
