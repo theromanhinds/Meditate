@@ -15,7 +15,7 @@ function Account({ setPage, userData, handleGoogleSignIn, handleSignOut }) {
             <div className='scripture-list'>
 
               <p className='account-stats'>Streak: {userData.stats.streak}</p>
-              <p className='account-stats'>Total Memorized: {userData.stats.memorized}</p>
+              <p className='account-stats'>Total Memorized: {userData.scriptures.length}</p>
             
               <button className='sign-out-button' onClick={handleSignOut}>Sign Out</button>
 

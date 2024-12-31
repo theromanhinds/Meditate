@@ -25,6 +25,8 @@ function App() {
   }, [userData]);
 
   const [dailyMenoScripture, setDailyMenoScripture] = useState(null);
+  const [menoActivated, setMenoActivated] = useState(false);
+  const [menoCompleted, setMenoCompleted] = useState(false);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -35,7 +37,11 @@ function App() {
       default:
         return <Home setPage={(page) => handlePageChange(page)} 
                       scriptures={scriptures} 
-                      dailyMenoScripture={dailyMenoScripture} 
+                      dailyMenoScripture={dailyMenoScripture}
+                      menoActivated={menoActivated}
+                      setMenoActivated={setMenoActivated}
+                      menoCompleted={menoCompleted} 
+                      setMenoCompleted={setMenoCompleted}
                       setDailyMenoScripture={setDailyMenoScripture} 
                       userData={userData}
                       currentStreak={currentStreak}

@@ -4,10 +4,9 @@ import { updateStreak } from '../Components/Firebase';
 
 import DailyMeno from './DailyMeno';
 
-const Home = ({ scriptures, dailyMenoScripture, setDailyMenoScripture, setPage, userData, currentStreak, setCurrentStreak }) => {
-
-  const [menoActivated, setMenoActivated] = useState(false);
-  const [menoCompleted, setMenoCompleted] = useState(false);
+const Home = ({ scriptures, dailyMenoScripture, 
+                menoActivated, setMenoActivated, menoCompleted,
+                setMenoCompleted, setDailyMenoScripture, setPage, userData, currentStreak, setCurrentStreak }) => {
 
   const handleStreakIncrement = () => {
     setCurrentStreak((prevStreak) => {
@@ -18,23 +17,18 @@ const Home = ({ scriptures, dailyMenoScripture, setDailyMenoScripture, setPage, 
   };
   
   const startDailyMeno = () => {
-    console.log(scriptures)
     const randomIndex = Math.floor(Math.random() * scriptures.length);
-    // console.log(randomIndex);
     setDailyMenoScripture(scriptures[randomIndex]);
-};
 
-  // Trigger menoActivated after dailyMenoScripture is set
-  useEffect(() => {
-    if (dailyMenoScripture) {
+    setTimeout(() => {
         setMenoActivated(true);
-    }
-}, [dailyMenoScripture]);
+    }, 0); 
+  };
 
   return (
     <div className="page-container">
 
-      {menoCompleted && !menoActivated && (
+      {menoCompleted && menoActivated && (
         <div className="page-content">
 
           <div className='page-header'>
@@ -69,7 +63,7 @@ const Home = ({ scriptures, dailyMenoScripture, setDailyMenoScripture, setPage, 
         </div>
       )}
       
-      {menoActivated && (
+      {!menoCompleted && menoActivated && (
         <DailyMeno dailyMenoScripture={dailyMenoScripture} 
                   setDailyMenoScripture={setDailyMenoScripture} 
                   setMenoCompleted={setMenoCompleted} 
@@ -77,7 +71,7 @@ const Home = ({ scriptures, dailyMenoScripture, setDailyMenoScripture, setPage, 
                   handleStreakIncrement={handleStreakIncrement}/>
       )}
       
-      {!menoActivated && (<NavBar setPage={setPage} />)}
+      {(!menoActivated || menoCompleted) && (<NavBar setPage={setPage} />)}
     </div>
   );
 };

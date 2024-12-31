@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 import { evaluateTranscription } from '../Functions/evaluateTranscription';
 
-function DailyMeno({dailyMenoScripture, setMenoActivated, setMenoCompleted, handleStreakIncrement}) {
+function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}) {
     
     const [phase, setPhase] = useState(1);
     const [correctedString, setCorrectedString] = useState('');
@@ -39,7 +39,6 @@ function DailyMeno({dailyMenoScripture, setMenoActivated, setMenoCompleted, hand
     const handleReset = () => {
         handleStreakIncrement();
         setMenoCompleted(true);
-        setMenoActivated(false);        
     };
 
     return (
