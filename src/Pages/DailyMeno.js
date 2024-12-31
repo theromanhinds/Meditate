@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 import { evaluateTranscription } from '../Functions/evaluateTranscription';
 
@@ -8,7 +8,7 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
     const [correctedString, setCorrectedString] = useState('');
     const [accuracy, setAccuracy] = useState('');
 
-    const { isRecording, transcription, startRecording, stopRecording } = useAudioRecorder();
+    const { transcription, startRecording, stopRecording } = useAudioRecorder();
 
     const handleStartRecording = () => {
         setPhase(2); 
