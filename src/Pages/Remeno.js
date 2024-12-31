@@ -4,16 +4,14 @@ import RemenoScriptureButton from '../Components/RemenoScriptureButton'
 
 import { addScriptureToUser, deleteScriptureFromUser } from '../Components/Firebase'
 
-function Remeno({ setPage, userData }) {
-
-  const [scriptures, setScriptures] = useState(userData?.scriptures || []);
+function Remeno({ setPage, scriptures, setScriptures }) {
 
   useEffect(() => {
-    setScriptures(userData?.scriptures || []);
-  }, [userData]);
+    setScriptures(scriptures || []);
+  }, [scriptures]);
 
   const addScripture = async () => {
-    const newScripture = { reference: "Genesis 1:1", verse: "For God so loved the world..." };
+    const newScripture = { reference: "Philippians 4:4", verse: "Rejoice!" };
     await addScriptureToUser(newScripture);
     setScriptures((prev) => [...prev, newScripture]);
   };
@@ -29,7 +27,7 @@ function Remeno({ setPage, userData }) {
 
         <div className='page-header'>
           <h2 className='page-header-text'>Remeno</h2>
-          <h2 className='page-header-streak'>📜{userData ? userData.stats.memorized : 0}</h2>
+          <h2 className='page-header-streak'>📜{scriptures ? scriptures.length : 0}</h2>
         </div>
 
         <div className='page-content-inner'>

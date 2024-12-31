@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 import { evaluateTranscription } from '../Functions/evaluateTranscription';
 
-function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
+function DailyMeno({dailyMenoScripture, setMenoActivated, setMenoCompleted, handleStreakIncrement}) {
     
     const [phase, setPhase] = useState(1);
     const [correctedString, setCorrectedString] = useState('');
@@ -26,7 +26,7 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
     };
 
     const handleEvaluateTranscription = () => {
-        const result = evaluateTranscription(transcription, scriptures[0].scripture);
+        const result = evaluateTranscription(transcription, dailyMenoScripture.verse);
         setCorrectedString(result.correctedString);
         setAccuracy(result.accuracy);
         setPhase(4);
@@ -37,15 +37,10 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
     };
 
     const handleReset = () => {
+        handleStreakIncrement();
         setMenoCompleted(true);
         setMenoActivated(false);        
     };
-
-    // Get a random scripture when entering phase 2
-    // const getRandomScripture = () => {
-    // const randomIndex = Math.floor(Math.random() * scriptures.length);
-    // setScripture(scriptures[randomIndex]);
-    // };
 
     return (
         <>
@@ -53,7 +48,7 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
         {phase === 1 && (
             <div className='meno-container'>
 
-                <div className='scripture-reference'>{scriptures[0].reference}</div>
+                <div className='scripture-reference'>{dailyMenoScripture.reference}</div>
 
                 <div className='meno-action-button-container'>
 
@@ -127,9 +122,9 @@ function DailyMeno({scriptures, setMenoActivated, setMenoCompleted}) {
         {phase === 5 && (
             <div className='meno-container'>
 
-                <p className='accuracy-score'>{scriptures[0].reference}</p>
+                <p className='accuracy-score'>{dailyMenoScripture.reference}</p>
 
-                <h3 className='scripture-transcription'>{scriptures[0].scripture}</h3>
+                <h3 className='scripture-transcription'>{dailyMenoScripture.verse}</h3>
                 
                 <div className='meno-action-button-container'>
 

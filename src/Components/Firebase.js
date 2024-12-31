@@ -36,3 +36,18 @@ export const deleteScriptureFromUser = async (scripture) => {
     scriptures: arrayRemove(scripture)
   });
 };
+
+export const updateStreak = async (newStreakValue) => {
+  const userId = auth.currentUser?.uid;
+  if (!userId) throw new Error("User not authenticated");
+  
+  try {
+    const userRef = doc(db, "users", userId);
+    await updateDoc(userRef, {
+      "stats.streak": newStreakValue,
+    });
+    console.log("Streak updated successfully!");
+  } catch (error) {
+    console.error("Error updating streak:", error);
+  }
+};

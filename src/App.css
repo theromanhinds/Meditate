@@ -454,6 +454,9 @@
   height: 75px;
   border-radius: 50%;
   border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .meno-action-button .fa-microphone {
