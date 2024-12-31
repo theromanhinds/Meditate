@@ -77,16 +77,10 @@
 
 export function evaluateTranscription(transcription, scripture) {
 
-    console.log(transcription);
-    console.log(scripture)
-
     const normalize = (str) => str.replace(/[^a-z0-9\s]/gi, '').toLowerCase().split(/\s+/);
 
     const transcriptWords = normalize(transcription);
     const scriptureWords = normalize(scripture);
-
-    console.log(transcriptWords);
-    console.log(scriptureWords);
 
     const originalWords = transcription.split(/\s+/);
 
@@ -98,8 +92,6 @@ export function evaluateTranscription(transcription, scripture) {
 
     let correctCount = 0;
 
-    // let usedScriptureWords = new Set();
-
     //for each word in list of original scripture words
     scriptureWords.forEach((word) => {
 
@@ -110,7 +102,7 @@ export function evaluateTranscription(transcription, scripture) {
             correctedString.push(`${originalWords[transcriptIndex]} `);
             correctCount++;
             transcriptIndex++;
-        } else if (scriptureWords.includes(word)) {
+        } else if (scriptureWords.includes(transcriptWord)) {
             correctedString.push(
                 <span style={{ color: 'yellow' }}>{originalWords[transcriptIndex]} </span>
             );
@@ -131,6 +123,7 @@ export function evaluateTranscription(transcription, scripture) {
             <span style={{ color: 'red' }}>{originalWords[transcriptIndex]} </span>
         );
         transcriptIndex++;
+        correctCount--;
     }
 
     // If transcript is shorter than scripture, push empty words to string
