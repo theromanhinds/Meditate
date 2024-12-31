@@ -13,13 +13,29 @@ function Remeno({ setPage, scriptures, setScriptures }) {
     setScriptures(scriptures || []);
   }, [scriptures]);
 
-  const addScripture = async () => {
+  const requestScripture = async (selectedBook, selectedChapter, selectedStartVerse, selectedEndVerse) => {
+    try {
+      const verseRange = `${selectedBook.toLowerCase()}+${selectedChapter}:${selectedStartVerse}-${selectedEndVerse}`;
+      const response = await fetch(`https://bible-api.com/${verseRange}`);
+      const data = await response.json();
+      const newScripture = {
+        reference: data.reference,
+        verse: data.text
+      }
+      console.log(newScripture);
+      addScripture(newScripture);
+    } catch (error) {
+      console.error('Error fetching scripture:', error);
+    }
+  }
 
+  const startSelectingScripture = async () => {
     setSelectingScripture(true);
+  };
 
-    // const newScripture = { reference: "Philippians 4:4", verse: "Rejoice!" };
-    // await addScriptureToUser(newScripture);
-    // setScriptures((prev) => [...prev, newScripture]);
+  const addScripture = async (newScripture) => {
+    await addScriptureToUser(newScripture);
+    setScriptures((prev) => [...prev, newScripture]);
   };
 
   const deleteScripture = async (scripture) => {
@@ -30,7 +46,8 @@ function Remeno({ setPage, scriptures, setScriptures }) {
   return (
     <>
       {selectingScripture && (
-        <ScriptureSelect setSelectingScripture={setSelectingScripture}/>
+        <ScriptureSelect setSelectingScripture={setSelectingScripture}
+                          requestScripture={requestScripture}/>
       )}
 
       {<div className="page-container">
@@ -46,7 +63,7 @@ function Remeno({ setPage, scriptures, setScriptures }) {
 
               <button className='add-scripture-button'>
                 Add to your list!
-                <span onClick={addScripture} className="add-icon"><i className="fas fa-plus"></i></span>
+                <span onClick={startSelectingScripture} className="add-icon"><i className="fas fa-plus"></i></span>
               </button>
 
               {scriptures.length > 0 ? (
