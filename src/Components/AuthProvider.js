@@ -67,6 +67,7 @@ export const useAuth = () => {
         // Load existing user data
         setUserData(docSnap.data());
       }
+      console.log("SIGNED IN!");
     } catch (error) {
       console.error('Error signing in: ', error);
     }

@@ -4,7 +4,7 @@ function RemenoScriptureButton({ reference, deleteScripture }) {
   return (
     <button className='scripture-button'>
         {reference}
-        <span onClick={deleteScripture} className="icon"><i className="fas fa-ellipsis-vertical"></i></span>
+        <span onClick={deleteScripture} className="icon"><i className="fas fa-x"></i></span>
     </button>
   )
 }

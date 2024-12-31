@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
+import SignIn from './Pages/SignIn';
 import Home from './Pages/Home';
 import Remeno from './Pages/Remeno';
 import Account from './Pages/Account';
@@ -9,7 +10,7 @@ import { useAuth } from './Components/AuthProvider';
 
 function App() {
 
-  const { userData, handleGoogleSignIn, handleSignOut } = useAuth();  // Use the custom hook
+  const { userData, authLoading, handleGoogleSignIn, handleSignOut } = useAuth();  // Use the custom hook
 
   const [currentPage, setCurrentPage] = useState('home');
 
@@ -54,9 +55,19 @@ function App() {
   };
 
   return (
+    // <div className="App">
+    //     (userData ? renderPage() : <SignIn handleGoogleSignIn={handleGoogleSignIn}/>)
+    // </div>
+
     <div className="App">
-        {renderPage()}
-    </div>
+    {authLoading ? (
+      <div className="spinner"></div>  
+    ) : userData ? (
+      renderPage()
+    ) : (
+      <SignIn handleGoogleSignIn={handleGoogleSignIn} />
+    )}
+  </div>
   );
 }
 

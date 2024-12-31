@@ -54,20 +54,22 @@ function Remeno({ setPage, scriptures, setScriptures }) {
         <div className='page-content'>
 
           <div className='page-header'>
-            <h2 className='page-header-text'>Remeno</h2>
-            <h2 className='page-header-streak'>📜{scriptures ? scriptures.length : 0}</h2>
+            <h2 className='page-header-text'>Scriptures</h2>
+            <div className='streak-widget-container'>
+              <p className='page-header-streak'>{scriptures ? scriptures.length : 0} {scriptures?.length > 1 ? "Verses" : "Verse"}</p>
+            </div>
           </div>
 
         <div className='page-content-inner'>
           <div className='scripture-list'>
 
               <button className='add-scripture-button'>
-                Add to your list!
+                Add Scripture
                 <span onClick={startSelectingScripture} className="add-icon"><i className="fas fa-plus"></i></span>
               </button>
 
               {scriptures.length > 0 ? (
-                scriptures.map(scripture => (
+                [...scriptures].reverse().map(scripture => (
                   <RemenoScriptureButton key={scripture.reference} reference={scripture.reference} deleteScripture={() => deleteScripture(scripture)}/>
                 ))
               ) : (
@@ -78,7 +80,7 @@ function Remeno({ setPage, scriptures, setScriptures }) {
         </div>
         
       </div>
-      <NavBar setPage={setPage} />
+      {!selectingScripture && <NavBar setPage={setPage} />}
     </div>}
     </>
     

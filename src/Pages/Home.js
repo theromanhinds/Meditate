@@ -3,10 +3,12 @@ import NavBar from '../Components/NavBar';
 import { updateStreak } from '../Components/Firebase';
 
 import DailyMeno from './DailyMeno';
+import StreakWidget from '../Components/StreakWidget';
 
 const Home = ({ scriptures, dailyMenoScripture, 
                 menoActivated, setMenoActivated, menoCompleted,
-                setMenoCompleted, setDailyMenoScripture, setPage, userData, currentStreak, setCurrentStreak }) => {
+                setMenoCompleted, setDailyMenoScripture, 
+                setPage, currentStreak, setCurrentStreak }) => {
 
   const handleStreakIncrement = () => {
     setCurrentStreak((prevStreak) => {
@@ -32,8 +34,8 @@ const Home = ({ scriptures, dailyMenoScripture,
         <div className="page-content">
 
           <div className='page-header'>
-            <h2 className='page-header-text'>Daily Meno</h2>
-            <h2 className='page-header-streak'>🌿{currentStreak ? currentStreak : 0}</h2>
+            <h2 className='page-header-text'>Daily Challenge</h2>
+            <StreakWidget currentStreak={currentStreak}/>
           </div>
 
           <div className='page-content-inner'>
@@ -51,8 +53,8 @@ const Home = ({ scriptures, dailyMenoScripture,
         <div className="page-content">
         
           <div className='page-header'>
-            <h2 className='page-header-text'>Daily Meno</h2>
-            <h2 className='page-header-streak'>🌿{userData ? userData.stats.streak : 0}</h2>
+            <h2 className='page-header-text'>Daily Challenge</h2>
+            <StreakWidget/>
           </div>
 
           <div className='page-content-inner'>
