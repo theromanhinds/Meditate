@@ -2,6 +2,10 @@ import React from 'react';
 import NavBar from '../Components/NavBar';
 import { updateStreak } from '../Components/Firebase';
 
+// import { BibleGatewayAPI } from "bible-gateway-api";
+
+// let bgw = new BibleGatewayAPI();
+
 import DailyMeno from './DailyMeno';
 import StreakWidget from '../Components/StreakWidget';
 
@@ -19,10 +23,36 @@ const Home = ({ scriptures, dailyMenoScripture,
     });
   };
   
-  const startDailyMeno = () => {
-
-    console.log("start meno");
+  const startDailyMeno = async () => {
     
+    let version = 'NIV';
+    let query = encodeURIComponent("John 3:16");
+
+    const url = `https://www.biblegateway.com/passage?search=${query}&version=${version}`;
+
+    console.log("url ", url);
+
+    try {
+      const response = await fetch(url, { mode: 'no-cors' });
+      
+      console.log(response);
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await response.text();
+      console.log(data);
+  
+      console.log("start meno");
+      
+      // Additional logic here
+  
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  
+
     // const randomIndex = Math.floor(Math.random() * scriptures.length);
     // setDailyMenoScripture(scriptures[randomIndex]);
 
