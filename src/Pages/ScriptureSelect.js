@@ -58,7 +58,8 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
 
                                 {Object.keys(BooksChaptersVerses).length > 0 ? (
                                     Object.keys(BooksChaptersVerses).map(book => (
-                                        <ScriptureSelectButton text={book} 
+                                        <ScriptureSelectButton 
+                                            key={book} text={book} 
                                             nextSelectStage={() => {
                                                 setSelectedBook(book);
                                                 nextSelectStage();
