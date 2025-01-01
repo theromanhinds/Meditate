@@ -24,19 +24,21 @@ const Home = ({ userData, scriptures, dailyMenoScripture,
   
   const startDailyMeno = async () => {
 
-    console.log("MENO");
-    
-    const randomIndex = Math.floor(Math.random() * scriptures.length);
-    setDailyMenoScripture(scriptures[randomIndex]);
-
-    const userRef = doc(db, 'users', userData.userId);  
-    await updateDoc(userRef, {
-      dailyMenoScripture: scriptures[randomIndex],
-    });
-
-    setTimeout(() => {
-        setMenoActivated(true);
-    }, 0); 
+    if (scriptures.length === 0) {
+      console.log("No scriptures");
+    } else {
+      const randomIndex = Math.floor(Math.random() * scriptures.length);
+      setDailyMenoScripture(scriptures[randomIndex]);
+  
+      const userRef = doc(db, 'users', userData.userId);  
+      await updateDoc(userRef, {
+        dailyMenoScripture: scriptures[randomIndex],
+      });
+  
+      setTimeout(() => {
+          setMenoActivated(true);
+      }, 0); 
+    }
   };
 
   return (
