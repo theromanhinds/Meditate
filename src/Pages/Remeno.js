@@ -22,23 +22,50 @@ function Remeno({ setPage, scriptures, setScriptures }) {
     try {
       const bookId = BooksChaptersVerses[selectedBook].index;
 
-      const response = await fetch(`https://floating-shore-90105-2f5b2c924006.herokuapp.com/api/scripture?bookId=${bookId}&chapter=${selectedChapter}&startingVerse=${selectedStartVerse}&endingVerse=${selectedEndVerse}`);
-      const verse = await response.text();
+      // const response = await fetch(`https://floating-shore-90105-2f5b2c924006.herokuapp.com/api/scripture?bookId=${bookId}&chapter=${selectedChapter}&startingVerse=${selectedStartVerse}&endingVerse=${selectedEndVerse}`);
+      const response = await fetch(`https://bolls.life/get-chapter/NIV2011/${bookId}/${selectedChapter}/`)
 
-      let newScripture = {};
+      const data = await response.json();
+      let verse = '';
+      let newScripture = null;
+
+      console.log(data);
 
       if (selectedStartVerse === selectedEndVerse) {
+        verse = data[selectedStartVerse-1].text;
+
         newScripture = {
           reference: `${selectedBook} ${selectedChapter}:${selectedStartVerse}`,
-          verse: verse
-        }
+          verse: verse,
+    }
       } else {
+        for (let i = selectedStartVerse-1; i < selectedEndVerse - 1; i++) {
+            verse += data[i].text + " ";
+        }
+        verse += data[selectedEndVerse-1].text;
+
         newScripture = {
           reference: `${selectedBook} ${selectedChapter}:${selectedStartVerse}-${selectedEndVerse}`,
-          verse: verse
+          verse: verse,
         }
       }
-      
+      // const verse = await response.text();
+
+      // let newScripture = {};
+
+      // if (selectedStartVerse === selectedEndVerse) {
+      //   newScripture = {
+      //     reference: `${selectedBook} ${selectedChapter}:${selectedStartVerse}`,
+      //     verse: verse
+      //   }
+      // } else {
+      //   newScripture = {
+      //     reference: `${selectedBook} ${selectedChapter}:${selectedStartVerse}-${selectedEndVerse}`,
+      //     verse: verse
+      //   }
+      // }
+      console.log(verse);
+
       addScripture(newScripture);
     } catch (error) {
       console.error('Error fetching scripture:', error);
