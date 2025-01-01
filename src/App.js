@@ -17,11 +17,25 @@ function App() {
   const [scriptures, setScriptures] = useState(userData?.scriptures || []);
 
   const [currentStreak, setCurrentStreak] = useState(userData?.stats.streak || 0);
+
+  const [canAddScripture, setCanAddScripture] = useState(false);
   
+  const checkIfNewDay = () => {
+    const lastAddedDate = userData.lastAddedDate;
+    const today = new Date().toISOString().split('T')[0];  // YYYY-MM-DD
+  
+    if (lastAddedDate !== today) {
+      setCanAddScripture(true);  // Allow adding scripture
+    } else {
+      setCanAddScripture(false);  // Block adding scripture
+    }
+  };
+
   useEffect(() => {
     if (userData) {
       setScriptures(userData?.scriptures || []);
       setCurrentStreak(userData?.stats?.streak || 0);
+      checkIfNewDay();
     }
   }, [userData]);
 
@@ -32,7 +46,12 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'remeno':
-        return <Remeno setPage={(page) => handlePageChange(page)} scriptures={scriptures} setScriptures={setScriptures}/>;
+        return <Remeno setPage={(page) => handlePageChange(page)} 
+                        userData={userData} 
+                        scriptures={scriptures} 
+                        setScriptures={setScriptures}
+                        canAddScripture={canAddScripture}
+                        setCanAddScripture={setCanAddScripture}/>;
       case 'account':
         return <Account setPage={(page) => handlePageChange(page)} 
                         currentStreak={currentStreak}

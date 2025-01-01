@@ -7,7 +7,10 @@ import { BooksChaptersVerses } from '../Components/Scriptures';
 import { addScriptureToUser, deleteScriptureFromUser } from '../Components/Firebase'
 import VerseViewer from './VerseViewer';
 
-function Remeno({ setPage, scriptures, setScriptures }) {
+import { db } from '../Components/Firebase';
+import { doc, updateDoc } from 'firebase/firestore';
+
+function Remeno({ userData, setPage, scriptures, setScriptures, canAddScripture, setCanAddScripture }) {
 
   const [selectingScripture, setSelectingScripture] = useState(false);
   const [scriptureToView, setScriptureToView] = useState(null);
@@ -78,7 +81,14 @@ function Remeno({ setPage, scriptures, setScriptures }) {
 
   const addScripture = async (newScripture) => {
     await addScriptureToUser(newScripture);
+
     setScriptures((prev) => [...prev, newScripture]);
+
+    const userRef = doc(db, 'users', userData.userId);  // Use auth.currentUser.uid
+    await updateDoc(userRef, {
+      lastAddedDate: new Date().toISOString().split('T')[0],  // Save today's date
+    });
+    setCanAddScripture(false);
   };
 
   const deleteScripture = async (scripture) => {
@@ -122,10 +132,16 @@ function Remeno({ setPage, scriptures, setScriptures }) {
         <div className='page-content-inner'>
           <div className='scripture-list'>
 
-              <div className='add-scripture-button' onClick={startSelectingScripture} >
-                Add Scripture
-                <span className="add-icon"><i className="fas fa-plus"></i></span>
-              </div>
+          {canAddScripture ? (
+            <div className='add-scripture-button' onClick={startSelectingScripture} >
+              Add Scripture
+              <span className="add-icon"><i className="fas fa-plus"></i></span>
+            </div>
+          ) : (
+            <p className='tap-to-start'>Add new scripture tomorrow!</p>
+          )}
+
+              
 
               {scriptures.length > 0 ? (
                 [...scriptures].reverse().map(scripture => (

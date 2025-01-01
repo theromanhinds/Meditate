@@ -271,8 +271,8 @@
 }
 
 .tap-to-start {
-  font-size: 24px;
-
+  font-size: 20px;
+  color: #DAF1DE;
   user-select: none;  /* Prevents text selection */
   -webkit-user-select: none;  /* For Safari */
   -moz-user-select: none;     /* For Firefox */
@@ -385,7 +385,7 @@
 
 .scripture-button {
   width: 100%;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   color: #0B2B26;
   background-color: #DAF1DE;
