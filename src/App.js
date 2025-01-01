@@ -19,25 +19,27 @@ function App() {
   const [currentStreak, setCurrentStreak] = useState(userData?.stats.streak || 0);
 
   const [canAddScripture, setCanAddScripture] = useState(false);
-  
-  const checkIfNewDay = () => {
-    const lastAddedDate = userData.lastAddedDate;
-    const today = new Date().toISOString().split('T')[0];  // YYYY-MM-DD
-  
-    if (lastAddedDate !== today) {
-      setCanAddScripture(true);  // Allow adding scripture
-    } else {
-      setCanAddScripture(false);  // Block adding scripture
-    }
-  };
 
   useEffect(() => {
     if (userData) {
       setScriptures(userData?.scriptures || []);
       setCurrentStreak(userData?.stats?.streak || 0);
+
+      const checkIfNewDay = () => {
+        const lastAddedDate = userData.lastAddedDate;
+        const today = new Date().toISOString().split('T')[0];  // YYYY-MM-DD
+      
+        if (lastAddedDate !== today) {
+          setCanAddScripture(true);  // Allow adding scripture
+        } else {
+          setCanAddScripture(false);  // Block adding scripture
+        }
+      };
+
       checkIfNewDay();
+
     }
-  }, [userData, checkIfNewDay]);
+  }, [userData]);
 
   const [dailyMenoScripture, setDailyMenoScripture] = useState(null);
   const [menoActivated, setMenoActivated] = useState(false);
