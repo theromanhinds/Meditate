@@ -37,7 +37,7 @@ function App() {
       setCurrentStreak(userData?.stats?.streak || 0);
       checkIfNewDay();
     }
-  }, [userData]);
+  }, [userData, checkIfNewDay]);
 
   const [dailyMenoScripture, setDailyMenoScripture] = useState(null);
   const [menoActivated, setMenoActivated] = useState(false);

@@ -37,6 +37,10 @@
   top: 10px;
   color: #DAF1DE;
   font-size: 1em;
+  user-select: none;  /* Prevents text selection */
+  -webkit-user-select: none;  /* For Safari */
+  -moz-user-select: none;     /* For Firefox */
+  -ms-user-select: none;      /* For IE/Edge */
 }
 
 .sign-in-welcome {
@@ -48,6 +52,10 @@
   padding-right: 40px;
   margin: 0;
   font-style: italic;
+  user-select: none;  /* Prevents text selection */
+  -webkit-user-select: none;  /* For Safari */
+  -moz-user-select: none;     /* For Firefox */
+  -ms-user-select: none;      /* For IE/Edge */
 
 }
 
@@ -59,6 +67,10 @@
   padding: 0;
   margin: 0;
   transition: 0.3s;
+  user-select: none;  /* Prevents text selection */
+  -webkit-user-select: none;  /* For Safari */
+  -moz-user-select: none;     /* For Firefox */
+  -ms-user-select: none;      /* For IE/Edge */
 }
 
 .sign-in-logo:hover {
