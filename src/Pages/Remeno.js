@@ -86,7 +86,7 @@ function Remeno({ userData, setPage, scriptures, setScriptures, canAddScripture,
 
     const userRef = doc(db, 'users', userData.userId);  // Use auth.currentUser.uid
     await updateDoc(userRef, {
-      lastAddedDate: new Date().toISOString().split('T')[0],  // Save today's date
+      lastScriptureAdded: new Date().toISOString().split('T')[0],  // Save today's date
     });
     setCanAddScripture(false);
   };

@@ -95,7 +95,6 @@ export const useAuth = () => {
             email: user.email,
             firstName: user.displayName.split(' ')[0],
             fullName: user.displayName,
-            dailyMenoCompleted: false,
             scriptures: [
               { reference: "Genesis 1:1", verse: "In the beginning, God created the heavens and the earth." },
               { reference: "John 3:16", verse: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." }
@@ -110,7 +109,6 @@ export const useAuth = () => {
             email: user.email,
             firstName: user.displayName.split(' ')[0],
             fullName: user.displayName,
-            dailyMenoCompleted: false,
             scriptures: [
               { reference: "Genesis 1:1", verse: "In the beginning, God created the heavens and the earth." },
               { reference: "John 3:16", verse: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." }

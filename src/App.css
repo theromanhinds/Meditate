@@ -333,6 +333,7 @@
 
 .completed-scripture {
   color: white;
+  font-size: 20px;
   padding-left: 25px;
   padding-right: 25px;
 }
@@ -641,19 +642,8 @@
 .scripture-reference {
   font-size: 28px;
   font-weight: bold;
-  color: white;
+  color: #DAF1DE;
   margin-bottom: 20px;
-}
-
-.record-button {
-  background-color: rgb(27, 26, 26);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .transcription {
@@ -742,7 +732,7 @@
   justify-content: space-around;
   align-items: center;
 }
-
+/* 
 .meno-action-button {
   background-color: transparent;
   width: 75px;
@@ -752,14 +742,54 @@
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+
+.meno-action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: transparent;
+  background-color: #DAF1DE;
+  border: 4px solid white;
+  outline: none;
+  color: #051F20;
+  font-size: 32px;
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.18);  /* Subtle border */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);  /* Light shadow */
 }
 
-.meno-action-button .fa-microphone {
-  color: white;
+.fa-microphone {
+  color: #0B2B26;
+  transition: 0.3s;
+}
+
+.fa-stop {
+  color: #0B2B26;
+  transition: 0.3s;
+}
+
+.fa-arrow-right {
+  color: #0B2B26;
+  transition: 0.3s;
+}
+
+.fa-rotate-left {
+  color: #0B2B26;
   transition: 0.3s;
 }
 
 .meno-action-button:hover {
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.18);  /* Subtle border */
+  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.4);  /* Light shadow */
+}
+
+/* .meno-action-button:hover {
   background-color: white;
   color: #18181b;
 
@@ -783,30 +813,15 @@
     font-size: 2rem;
   }
 
-}
+} */
 
 .fa-x {
   font-size: 1rem;
 }
 
-.fa-stop {
-  color: white;
-  transition: 0.3s;
-}
-
-.fa-arrow-right {
-  color: white;
-  transition: 0.3s;
-}
-
-.fa-rotate-left {
-  color: white;
-  transition: 0.3s;
-}
-
 .scripture-transcription {
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   padding: 30px;
 }
 

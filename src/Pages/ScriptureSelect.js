@@ -157,7 +157,10 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
                         <div className='select-list'>
                             {selectedBook && selectedChapter && selectedStartVerse && BooksChaptersVerses[selectedBook] ? (
                                 Array.from({ 
-                                    length: BooksChaptersVerses[selectedBook].verses[selectedChapter - 1] - selectedStartVerse + 1
+                                    length: Math.min(
+                                        5,
+                                        BooksChaptersVerses[selectedBook].verses[selectedChapter - 1] - selectedStartVerse + 1
+                                    )
                                 }).map((_, index) => (
                                     <ScriptureSelectButton 
                                         key={selectedStartVerse + index} 

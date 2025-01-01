@@ -2,14 +2,13 @@ import React from 'react';
 import NavBar from '../Components/NavBar';
 import { updateStreak } from '../Components/Firebase';
 
-// import { BibleGatewayAPI } from "bible-gateway-api";
-
-// let bgw = new BibleGatewayAPI();
+import { db } from '../Components/Firebase';
+import { doc, updateDoc } from 'firebase/firestore';
 
 import DailyMeno from './DailyMeno';
 import StreakWidget from '../Components/StreakWidget';
 
-const Home = ({ scriptures, dailyMenoScripture, 
+const Home = ({ userData, scriptures, dailyMenoScripture, 
                 menoActivated, setMenoActivated, menoCompleted,
                 setMenoCompleted, setDailyMenoScripture, 
                 setPage, currentStreak, setCurrentStreak }) => {
@@ -27,18 +26,23 @@ const Home = ({ scriptures, dailyMenoScripture,
 
     console.log("MENO");
     
-    // const randomIndex = Math.floor(Math.random() * scriptures.length);
-    // setDailyMenoScripture(scriptures[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * scriptures.length);
+    setDailyMenoScripture(scriptures[randomIndex]);
 
-    // setTimeout(() => {
-    //     setMenoActivated(true);
-    // }, 0); 
+    const userRef = doc(db, 'users', userData.userId);  
+    await updateDoc(userRef, {
+      dailyMenoScripture: scriptures[randomIndex],
+    });
+
+    setTimeout(() => {
+        setMenoActivated(true);
+    }, 0); 
   };
 
   return (
     <div className="page-container">
 
-      {menoCompleted && menoActivated && (
+      {menoCompleted && (
         <div className="page-content">
 
           <div className='page-header'>
@@ -48,8 +52,8 @@ const Home = ({ scriptures, dailyMenoScripture,
 
           <div className='page-content-inner'>
             <h1 className='completed-scripture'>Completed</h1>
-            <h2 className='completed-scripture'>{dailyMenoScripture.verse}</h2>
-            <p className='completed-scripture'>{dailyMenoScripture.reference}</p>
+            <h2 className='completed-scripture'>{dailyMenoScripture?.verse}</h2>
+            <p className='completed-scripture'>{dailyMenoScripture?.reference}</p>
             
           </div>
 
@@ -80,7 +84,8 @@ const Home = ({ scriptures, dailyMenoScripture,
                   setDailyMenoScripture={setDailyMenoScripture} 
                   setMenoCompleted={setMenoCompleted} 
                   setMenoActivated={setMenoActivated}
-                  handleStreakIncrement={handleStreakIncrement}/>
+                  handleStreakIncrement={handleStreakIncrement}
+                  userData={userData}/>
       )}
       
       {(!menoActivated || menoCompleted) && (<NavBar setPage={setPage} />)}

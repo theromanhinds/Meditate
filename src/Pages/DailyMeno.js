@@ -2,17 +2,25 @@ import React, { useState } from 'react';
 import useAudioRecorder from '../Functions/useAudioRecorder';  // Import the custom hook
 import { evaluateTranscription } from '../Functions/evaluateTranscription';
 
-function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}) {
+import { db } from '../Components/Firebase';
+import { doc, updateDoc } from 'firebase/firestore';
+
+function DailyMeno({userData, dailyMenoScripture, setMenoCompleted, handleStreakIncrement}) {
     
     const [phase, setPhase] = useState(1);
     const [correctedString, setCorrectedString] = useState('');
     const [accuracy, setAccuracy] = useState('');
+    const [canStopRecording, setCanStopRecording] = useState(false);
 
     const { transcription, startRecording, stopRecording } = useAudioRecorder();
 
     const handleStartRecording = () => {
         setPhase(2); 
+        setCanStopRecording(false);
         startRecording();
+        setTimeout(() => {
+            setCanStopRecording(true);
+          }, 1000);
     };
 
     const handleStopRecording = async () => {
@@ -22,7 +30,11 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
 
     const handleRestartRecording = async () => {
         setPhase(2);
+        setCanStopRecording(false);
         startRecording();
+        setTimeout(() => {
+            setCanStopRecording(true);
+          }, 1000);
     };
 
     const handleEvaluateTranscription = () => {
@@ -36,8 +48,14 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
         setPhase(5);
     };
 
-    const handleReset = () => {
+    const handleReset = async () => {
         handleStreakIncrement();
+
+        const userRef = doc(db, 'users', userData.userId);  
+        await updateDoc(userRef, {
+            lastMenoCompleted: new Date().toISOString().split('T')[0],  // Save today's date
+        });
+
         setMenoCompleted(true);
     };
 
@@ -62,12 +80,12 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
 
         {phase === 2 && (
             <div className='meno-container'>
-
+                <p className='sign-in-tagline'>{dailyMenoScripture.reference}</p>
             <div className='scripture-reference'>Recording...</div>
 
                 <div className='meno-action-button-container'>
 
-                    <button className='meno-action-button' onClick={handleStopRecording}>
+                    <button className='meno-action-button' disabled={!canStopRecording} onClick={handleStopRecording}>
                         <span className="icon"><i className="fas fa-stop"></i></span>
                     </button>
 
@@ -78,7 +96,7 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
 
         {phase === 3 && (
             <div className='meno-container'>
-
+                <p className='sign-in-tagline'>{dailyMenoScripture.reference}</p>
                 <h3 className='scripture-transcription'>{transcription}</h3>
                 
                 <div className='meno-action-button-container'>
@@ -99,7 +117,7 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
         {phase === 4 && (
             <div className='meno-container'>
 
-                <p className='accuracy-score'>{accuracy}</p>
+                <p className='sign-in-tagline'>{accuracy}</p>
 
                 <h3 className='scripture-transcription'>{correctedString} </h3>
                 
@@ -121,7 +139,7 @@ function DailyMeno({dailyMenoScripture, setMenoCompleted, handleStreakIncrement}
         {phase === 5 && (
             <div className='meno-container'>
 
-                <p className='accuracy-score'>{dailyMenoScripture.reference}</p>
+                <p className='sign-in-tagline'>{dailyMenoScripture.reference}</p>
 
                 <h3 className='scripture-transcription'>{dailyMenoScripture.verse}</h3>
                 
