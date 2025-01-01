@@ -54,7 +54,7 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
                         </div>
 
                         <div className='page-content-inner'>
-                            <div className='scripture-list'>
+                            <div className='select-list'>
 
                                 {Object.keys(BooksChaptersVerses).length > 0 ? (
                                     Object.keys(BooksChaptersVerses).map(book => (
@@ -88,7 +88,7 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
                         </div>
 
                         <div className='page-content-inner'>
-                            <div className='scripture-list'>
+                            <div className='select-list'>
                                 {selectedBook && BooksChaptersVerses[selectedBook] ? (
                                     Array.from({ length: BooksChaptersVerses[selectedBook].chapters }).map((_, index) => (
                                         <ScriptureSelectButton 
@@ -121,7 +121,7 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
                         </div>
 
                         <div className='page-content-inner'>
-                            <div className='scripture-list'>
+                            <div className='select-list'>
                             {selectedBook && selectedChapter && BooksChaptersVerses[selectedBook] ? (
                                 Array.from({ length: BooksChaptersVerses[selectedBook].verses[selectedChapter - 1] }).map((_, index) => (
                                     <ScriptureSelectButton 
@@ -154,7 +154,7 @@ function ScriptureSelect({ setSelectingScripture, requestScripture }) {
                     </div>
 
                     <div className='page-content-inner'>
-                        <div className='scripture-list'>
+                        <div className='select-list'>
                             {selectedBook && selectedChapter && selectedStartVerse && BooksChaptersVerses[selectedBook] ? (
                                 Array.from({ 
                                     length: BooksChaptersVerses[selectedBook].verses[selectedChapter - 1] - selectedStartVerse + 1

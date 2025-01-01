@@ -8,7 +8,7 @@ function ScriptureSelectButton({ text, nextSelectStage }) {
     }
 
   return (
-    <button className='scripture-button' onClick={selectText} >
+    <button className='select-button' onClick={selectText} >
         {text}
         <span className="icon"><i className="fas fa-angle-right"></i></span>
     </button>
